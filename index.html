@@ -2117,12 +2117,18 @@
             : `${formatDisplayTime(ev.start)} – ${formatDisplayTime(ev.end)}`;
 
           html += `
-            <div onclick="openEditEventModal('${ev.id}')" class="event-card cat-${ev.category} ${isDimmed ? 'dimmed' : ''}" style="top: ${topPx}px; height: ${heightPx}px;">
+            <div class="event-card cat-${ev.category} ${isDimmed ? 'dimmed' : ''}" style="top: ${topPx}px; height: ${heightPx}px;">
               <div class="flex items-center justify-between gap-1 text-[10px] font-bold opacity-85 leading-tight">
                 <span class="truncate">${displayTimeRange}</span>
-                ${ev.transport && heightPx >= 36 ? `<span class="px-1.5 py-0.2 rounded-full bg-white/65 text-[9px] shrink-0 max-w-[85px] truncate">${escapeHTML(ev.transport)}</span>` : ''}
+                <div class="flex items-center gap-1 shrink-0">
+                  ${ev.transport && heightPx >= 36 ? `<span class="px-1.5 py-0.2 rounded-full bg-white/65 text-[9px] truncate max-w-[70px]">${escapeHTML(ev.transport)}</span>` : ''}
+                  <button type="button" onclick="event.stopPropagation(); openEditEventModal('${ev.id}')" title="Click to edit activity"
+                    class="w-5 h-5 rounded-full bg-white/80 border border-current flex items-center justify-center text-[10px] font-bold shadow-2xs hover:bg-white cursor-pointer">
+                    ✎
+                  </button>
+                </div>
               </div>
-              <div class="font-fredoka text-xs font-semibold leading-tight mt-0.5 ${heightPx < 48 ? 'truncate' : 'line-clamp-2'}">${escapeHTML(ev.title)}</div>
+              <div onclick="openEditEventModal('${ev.id}')" class="font-fredoka text-xs font-semibold leading-tight mt-0.5 cursor-pointer ${heightPx < 48 ? 'truncate' : 'line-clamp-2'}">${escapeHTML(ev.title)}</div>
               ${heightPx > 78 && ev.notes ? `<div class="text-[10px] opacity-80 mt-1 line-clamp-2 leading-tight">${escapeHTML(ev.notes)}</div>` : ''}
             </div>
           `;
