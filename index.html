@@ -2204,25 +2204,33 @@ function setFormLocked(locked) {
   elements.forEach(el => {
     el.disabled = locked;
     if (locked) {
-      el.classList.add('opacity-80');
+      el.classList.add('opacity-85');
     } else {
-      el.classList.remove('opacity-80');
+      el.classList.remove('opacity-85');
     }
   });
 
   const unlockBtnText = document.getElementById('unlockBtnText');
   const unlockFormBtn = document.getElementById('unlockFormBtn');
+  const deleteBtn = document.getElementById('deleteEventBtn');
+  const saveBtn = document.getElementById('saveEventBtn');
   
   if (locked) {
     if (unlockBtnText) unlockBtnText.textContent = 'Unlock to Edit';
     if (unlockFormBtn) {
       unlockFormBtn.classList.remove('border-amber-500', 'text-amber-700', 'bg-amber-50');
     }
+    // Hide delete and save buttons in view mode
+    if (deleteBtn) deleteBtn.classList.add('hidden');
+    if (saveBtn) saveBtn.classList.add('hidden');
   } else {
     if (unlockBtnText) unlockBtnText.textContent = 'Editing Unlocked';
     if (unlockFormBtn) {
       unlockFormBtn.classList.add('border-amber-500', 'text-amber-700', 'bg-amber-50');
     }
+    // Show delete and save buttons when unlocked
+    if (deleteBtn) deleteBtn.classList.remove('hidden');
+    if (saveBtn) saveBtn.classList.remove('hidden');
   }
 }
 
