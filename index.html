@@ -515,7 +515,13 @@
           <span id="modalDayBadge" class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full" style="background-color: var(--page-bg); color: var(--primary-button);">Day 1</span>
           <h3 id="modalHeading" class="text-xl font-bold mt-1.5">Activity Details</h3>
         </div>
-        <button onclick="closeEventModal()" class="w-9 h-9 rounded-full flex items-center justify-center font-bold border cursor-pointer shrink-0" style="background-color: var(--page-bg); border-color: var(--border);">✕</button>
+        <div class="flex items-center gap-2">
+          <!-- Unlock Toggle Button -->
+          <button type="button" id="unlockFormBtn" onclick="toggleFormEdit()" class="px-3 py-1.5 rounded-xl text-xs font-semibold border flex items-center gap-1.5 cursor-pointer bg-white shadow-2xs hover:bg-slate-50 transition-colors" title="Unlock form to edit">
+            <span>✎</span> <span id="unlockBtnText">Unlock to Edit</span>
+          </button>
+          <button onclick="closeEventModal()" class="w-9 h-9 rounded-full flex items-center justify-center font-bold border cursor-pointer shrink-0" style="background-color: var(--page-bg); border-color: var(--border);">✕</button>
+        </div>
       </div>
 
       <!-- Quick Logistics Summary Pills (Cost, Hours, Origin, Google Maps) -->
