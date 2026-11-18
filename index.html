@@ -2199,6 +2199,44 @@
       document.getElementById('eventModal').classList.remove('hidden');
     }
 
+    // Helper to lock or unlock all inputs/selects/textareas in the form
+function setFormLocked(locked) {
+  const form = document.getElementById('eventEditForm');
+  const elements = form.querySelectorAll('input:not([type="hidden"]), select, textarea');
+  
+  elements.forEach(el => {
+    el.disabled = locked;
+    if (locked) {
+      el.classList.add('opacity-80');
+    } else {
+      el.classList.remove('opacity-80');
+    }
+  });
+
+  const unlockBtnText = document.getElementById('unlockBtnText');
+  const unlockFormBtn = document.getElementById('unlockFormBtn');
+  
+  if (locked) {
+    if (unlockBtnText) unlockBtnText.textContent = 'Unlock to Edit';
+    if (unlockFormBtn) {
+      unlockFormBtn.classList.remove('border-amber-500', 'text-amber-700', 'bg-amber-50');
+    }
+  } else {
+    if (unlockBtnText) unlockBtnText.textContent = 'Editing Unlocked';
+    if (unlockFormBtn) {
+      unlockFormBtn.classList.add('border-amber-500', 'text-amber-700', 'bg-amber-50');
+    }
+  }
+}
+
+// Click handler for the Unlock button
+function toggleFormEdit() {
+  const form = document.getElementById('eventEditForm');
+  const firstInput = form.querySelector('input:not([type="hidden"]), select, textarea');
+  const isCurrentlyDisabled = firstInput ? firstInput.disabled : true;
+  setFormLocked(!isCurrentlyDisabled);
+}
+
     function openNewEventModal() {
       document.getElementById('modalDayBadge').textContent = 'New Itinerary Item';
       document.getElementById('modalHeading').textContent = 'Add Activity';
