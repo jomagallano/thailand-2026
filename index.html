@@ -2197,6 +2197,8 @@
 
       document.getElementById('deleteEventBtn').classList.remove('hidden');
       document.getElementById('eventModal').classList.remove('hidden');
+
+      setFormLocked(true);
     }
 
     // Helper to lock or unlock all inputs/selects/textareas in the form
@@ -2261,6 +2263,8 @@ function toggleFormEdit() {
 
       document.getElementById('deleteEventBtn').classList.add('hidden');
       document.getElementById('eventModal').classList.remove('hidden');
+
+      setFormLocked(false);
     }
 
     function closeEventModal() {
